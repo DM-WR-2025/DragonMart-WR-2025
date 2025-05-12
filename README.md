@@ -497,6 +497,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for mobile responsiveness -->
   <title>Searchable Nationality Dropdown</title>
 
   <!-- Select2 CSS -->
@@ -506,16 +507,33 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
+      margin: 0;
+      box-sizing: border-box;
     }
+
     .form-group {
       margin-bottom: 15px;
     }
+
+    /* Style for the select element */
+    select {
+      width: 100%; /* Ensures the select element takes up full width */
+      max-width: 500px; /* Limits the width on larger screens */
+    }
+
+    /* Mobile-friendly styles */
+    @media (max-width: 768px) {
+      select {
+        width: 100%; /* Full width for mobile devices */
+      }
+    }
   </style>
+</head>
 <body>
 
   <div class="form-group">
     <label for="nationality">Nationality:</label>
-    <select id="nationality" name="nationality" required style="width: 50%;">
+    <select id="nationality" name="nationality" required>
       <option value="" disabled selected>Select Nationality</option>
       <option value="Bahrain">Bahrain</option>
       <option value="Kuwait">Kuwait</option>
@@ -728,6 +746,7 @@
   </script>
 
 </body>
+
 
 <div class="form-group">
 
