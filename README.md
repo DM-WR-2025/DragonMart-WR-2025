@@ -504,30 +504,27 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      margin: 0;
-      box-sizing: border-box;
-    }
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
 
-    .form-group {
-      margin-bottom: 15px;
-    }
+  /* Default: Mobile view */
+  #nationality {
+    width: 100%;
+  }
 
-    /* Style for the select element */
-    select {
-      width: 100%; /* Ensures the select element takes up full width */
-      max-width: 500px; /* Limits the width on larger screens */
+  /* Laptop/Desktop view (768px and above) */
+  @media (min-width: 768px) {
+    #nationality {
+      width: 50%;
     }
+  }
+</style>
 
-    /* Mobile-friendly styles */
-    @media (max-width: 768px) {
-      select {
-        width: 100%; /* Full width for mobile devices */
-      }
-    }
-  </style>
 </head>
 <body>
 
