@@ -728,10 +728,6 @@
   </script>
 
 </body>
-</html>
-
-
-
 
 <div class="form-group">
 
