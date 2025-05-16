@@ -493,7 +493,7 @@
   </style>
 <body>
 
-    
+   
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -759,12 +759,10 @@
 
 </div>
 
-<!-- Nationality Dropdown with Country Calling Codes -->
 <div class="form-group">
-    <label for="country_code">Country Calling Code:</label>
-    <select id="country_code" name="country_code" required>
-        <option value="" disabled selected>Select Country</option>
-
+        <label for="country_code">Country Calling Code:</label>
+        <select id="country_code" name="country_code" required>
+          <option value="" disabled selected>Select Country</option>
         <!-- GCC Countries -->
         <option value="+973">Bahrain (+973)</option>
         <option value="+965">Kuwait (+965)</option>
@@ -1267,5 +1265,6 @@
 
 
             <button type="submit">Submit</button>
+
 
        
