@@ -1,3 +1,4 @@
+
 <html lang="en">
 
 <head>
@@ -382,15 +383,15 @@
 
             var wheelchairOptions = {
 
-                "BA": ["1", "2", "3"],
+                "BA": ["1", "2", "3","other Desk"],
 
-                "F": ["4", "5", "6"],
+                "F": ["4", "5", "6","other Desk"],
 
-                "H": ["7", "8", "9"],
+                "H": ["7", "8", "9","other Desk"],
 
-                "GA": ["10", "11"],
+                "GA": ["10", "11","other Desk"],
 
-                "GD": ["12", "13"]
+                "GD": ["12", "13","other Desk"]
 
             };
 
@@ -458,13 +459,13 @@
 
 
 
-<body>
+<body
 
     <div class="container">
 
-        <h2>DM Wheelchair Registration Form</h2>
-
-        <form action="https://script.google.com/macros/s/AKfycbyjmRsD8DGauJZXCXelsrd35TsyIU-_u1laSDYmkxJgB6YUx3UnaDcy6h_1ynjC3ZUs4g/exec" method="POST" enctype="multipart/form-data" onsubmit="return confirmSubmission()">
+<img src="C:\Users\c-MOHAMED.Afrith\Downloads\DM_-_logo-removebg-preview.png" class="logo" />
+<h2>DM Wheelchair Registration Form</h2>
+        <form action="https://script.google.com/macros/s/AKfycbw1d6fVcU-utpUHecfCfO0i7fzZT5oD3waZxEm172XQbXQxRr9pkI5LgjSp1lwi7Vw/exec" method="POST" enctype="multipart/form-data" onsubmit="return confirmSubmission()">
 
            
 
@@ -726,7 +727,7 @@
       <option value="Yemen">Yemen</option>
       <option value="Zambia">Zambia</option>
       <option value="Zimbabwe">Zimbabwe</option>
-    </select>
+</select>
   </div>
 
   <!-- jQuery -->
@@ -741,6 +742,68 @@
       });
     });
   </script>
+<script>
+  function fetchCustomerDetails() {
+    const phone = document.getElementById("phone").value.trim();
+    if (!phone) {
+      alert("Please enter a phone number");
+      return;
+    }
+
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbw1d6fVcU-utpUHecfCfO0i7fzZT5oD3waZxEm172XQbXQxRr9pkI5LgjSp1lwi7Vw/exec"; // Replace with your actual deployed Apps Script Web App URL
+
+    fetch(`${scriptUrl}?phone=${encodeURIComponent(phone)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          document.getElementById("customer-name").value = data.customerName || "";
+          $('#nationality').val(data.nationality).trigger('change');
+
+          const typeInputs = document.getElementsByName("customer-type");
+          for (let i = 0; i < typeInputs.length; i++) {
+            if (typeInputs[i].value === data.customerType) {
+              typeInputs[i].checked = true;
+            }
+          }
+
+          document.getElementById("country_code").value = data.countryCode || "";
+          document.getElementById("email").value = data.email || "";
+          document.getElementById("desk").value = data.desk || "";
+
+          showWheelchairOptions();
+          setTimeout(() => {
+            document.getElementById("wheelchair-options").value = data.wheelchair || "";
+          }, 100);
+
+          const depositInputs = document.getElementsByName("deposit-type");
+          for (let i = 0; i < depositInputs.length; i++) {
+            if (depositInputs[i].value === data.depositType) {
+              depositInputs[i].checked = true;
+              toggleSecurityDepositOptions();
+            }
+          }
+
+          document.getElementById("id-number").value = data.idNumber || "";
+          document.getElementById("cash-amount").value = data.cashAmount || "";
+          document.getElementById("currency-type").value = data.currency || "";
+
+          document.getElementById("customer-id").value = data.customerId || "";
+          document.getElementById("security-id").value = data.securityId || "";
+          document.getElementById("last-date-time").value = data.lastDate || "";
+          document.getElementById("return_location").value = data.returnLocation || "";
+          document.getElementById("issued-csa-name").value = data.issuedCsaName || "";
+          document.getElementById("closed-csa-name").value = data.closedCsaName || "";
+          document.getElementById("wheelchair-status").value = data.wheelchairStatus || "";
+        }
+      })
+      .catch(err => {
+        alert("Failed to fetch data: " + err.message);
+      });
+  }
+</script>
+
 
 </body>
 
@@ -770,8 +833,7 @@
         <option value="+974">Qatar (+974)</option>
         <option value="+966">Saudi Arabia (+966)</option>
         <option value="+971">United Arab Emirates (+971)</option>
-
-        <!-- Other Countries (A to Z) -->
+           <!-- Other Countries (A to Z) -->
         <option value="+93">Afghanistan (+93)</option>
         <option value="+355">Albania (+355)</option>
         <option value="+213">Algeria (+213)</option>
@@ -925,8 +987,7 @@
 <option value="+967">Yemen (+967)</option>
 <option value="+260">Zambia (+260)</option>
 <option value="+263">Zimbabwe (+263)</option>
-
-      </select>
+ </select>
 </div>
 
 
@@ -1206,65 +1267,77 @@
 
 
 
-            <!-- CSA Name Dropdown -->
-
-            <div class="form-group">
-
-                <label for="csa-name">CSA Name:</label>
-
-                <select id="csa-name" name="csa-name" required>
-
-                    <option value="" disabled selected>Select CSA Name</option>
-
-                    <option value="Marie">Marie</option>
-
-                    <option value="Varun">Varun</option>
-
-                    <option value="Allaine">Allaine</option>
-
-                    <option value="Kaye">Kaye</option>
-
-                    <option value="Iswary">Iswary</option>
-
-                    <option value="Aqil">Aqil</option>
-
-                    <option value="Kim">Kim</option>
-
-                    <option value="Aahaan">Aahaan</option>
-
-                    <option value="Wasan">Wasan</option>
-
-                    <option value="Flora">Flora</option>
-
-                    <option value="Abdelrahman">Abdelrahman</option>
-
-                    <option value="April">April</option>
-
-                    <option value="Amine">Amine</option>
-
-                    <option value="Saber">Saber</option>
-
-                    <option value="Sadaf">Sadaf</option>
-
-                    <option value="Alameen">Alameen</option>
-
-                    <option value="Anjum">Anjum</option>
-
-                    <option value="Nourhan">Nourhan</option>
-
-                    <option value="Yasmine">Yasmine</option>
-
-                    <option value="Afrith">Afrith</option>
-
-                    <option value="Alnoor">Alnoor</option>
-
-                </select>
-
-            </div>
+          <!-- Issued CSA Dropdown -->
+<div class="form-group">
+    <label for="issued-csa-name">From CSA:</label>
+    <select id="issued-csa-name" name="issued-csa-name" required>
+        <option value="" disabled selected>Select Issued CSA</option>
+        <option value="Marie">Marie</option>
+        <option value="Varun">Varun</option>
+        <option value="Allaine">Allaine</option>
+        <option value="Iswary">Iswary</option>
+        <option value="Aqil">Aqil</option>
+        <option value="Kim">Kim</option>
+        <option value="Aahaan">Aahaan</option>
+        <option value="Wasan">Wasan</option>
+        <option value="Flora">Flora</option>
+        <option value="Abdelrahman">Abdelrahman</option>
+        <option value="April">April</option>
+        <option value="Amine">Amine</option>
+        <option value="Saber">Saber</option>
+        <option value="Sadaf">Sadaf</option>
+        <option value="Alameen">Alameen</option>
+        <option value="Anjum">Anjum</option>
+        <option value="Nourhan">Nourhan</option>
+        <option value="Yasmine">Yasmine</option>
+        <option value="Afrith">Afrith</option>
+        <option value="Alnoor">Alnoor</option>
+    </select>
+</div>
 
 
+<!-- Closed CSA Dropdown -->
+<div class="form-group">
+    <label for="Closed-csa-name">To CSA:</label>
+    <select id="Closed-csa-name" name="closed-csa-name" required>
+        <option value="" disabled selected>Select Closed CSA</option>
+        <option value="Marie">Marie</option>
+        <option value="Varun">Varun</option>
+        <option value="Allaine">Allaine</option>
+        <option value="Iswary">Iswary</option>
+        <option value="Aqil">Aqil</option>
+        <option value="Kim">Kim</option>
+        <option value="Aahaan">Aahaan</option>
+        <option value="Wasan">Wasan</option>
+        <option value="Flora">Flora</option>
+        <option value="Abdelrahman">Abdelrahman</option>
+        <option value="April">April</option>
+        <option value="Amine">Amine</option>
+        <option value="Saber">Saber</option>
+        <option value="Sadaf">Sadaf</option>
+        <option value="Alameen">Alameen</option>
+        <option value="Anjum">Anjum</option>
+        <option value="Nourhan">Nourhan</option>
+        <option value="Yasmine">Yasmine</option>
+        <option value="Afrith">Afrith</option>
+        <option value="Alnoor">Alnoor</option>
+    </select>
+</div>
 
-            <button type="submit">Submit</button>
+<!-- Phone Search Field and Button (For Existing Customer Lookup ONLY) -->
+<div class="form-group">
+  <label for="search-phone">Search Phone Number:</label>
+  <input type="tel" id="search-phone" name="search-phone" class="medium-input" />
+  <button type="button" onclick="fetchCustomerDetails()">Search</button>
+</div>
 
+<!-- Hidden Fields for Data from Script -->
+<input type="hidden" id="return_location" name="return_location" />
+<input type="hidden" id="issued-csa-name" name="issued-csa-name" />
+<input type="hidden" id="closed-csa-name" name="closed-csa-name" />
+<input type="hidden" id="wheelchair-status" name="wheelchair-status" />
+<input type="hidden" id="customer-id" name="customer-id" />
+<input type="hidden" id="security-id" name="security-id" />
+<input type="hidden" id="last-date-time" name="last-date-time" />
 
-       
+<button type="submit">Submit</button>
