@@ -463,7 +463,7 @@
 
     <div class="container">
 
-<img src="C:\Users\c-MOHAMED.Afrith\Downloads\DM_-_logo-removebg-preview.png" class="logo" />
+<img src="C:\Users\c-MOHAMED.Afrith\Pictures\Screenshots\Screenshot 2025-05-25 142622.png" class="logo" />
 <h2>DM Wheelchair Registration Form</h2>
         <form action="https://script.google.com/macros/s/AKfycbw1d6fVcU-utpUHecfCfO0i7fzZT5oD3waZxEm172XQbXQxRr9pkI5LgjSp1lwi7Vw/exec" method="POST" enctype="multipart/form-data" onsubmit="return confirmSubmission()">
 
