@@ -463,7 +463,7 @@
 
     <div class="container">
 
-<img src="assets/dm-logo.png" class="logo" alt="DM Logo" />
+ <img src="https://github.com/DM-WR-2025/DragonMart-WR-2025/raw/afa44c0b53fea055232ed100a0c1afedae83c149/1990.png" alt="DragonMart Logo" width="150">
 
 <h2>DM Wheelchair Registration Form</h2>
         <form action="https://script.google.com/macros/s/AKfycbw1d6fVcU-utpUHecfCfO0i7fzZT5oD3waZxEm172XQbXQxRr9pkI5LgjSp1lwi7Vw/exec" method="POST" enctype="multipart/form-data" onsubmit="return confirmSubmission()">
