@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DM Wheelchair Registration Form</title>
+    <title>Wheelchair Registration Form</title>
 
     <style>
 
