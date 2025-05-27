@@ -1302,6 +1302,7 @@
     <label for="Closed-csa-name">To CSA:</label>
     <select id="Closed-csa-name" name="closed-csa-name" required>
         <option value="" disabled selected>Select Closed CSA</option>
+         <option value="None">None</option>
         <option value="Marie">Marie</option>
         <option value="Varun">Varun</option>
         <option value="Allaine">Allaine</option>
