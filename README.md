@@ -1145,9 +1145,10 @@
 
 
 <div class="form-group">
-    <label for="last-date-time">Last Date and Time:</label>
-    <input type="datetime-local" id="last-date-time" name="last-date-time" class="medium-input" required>
+    <label for="last-date-time">Date and Time:</label>
+    <input type="datetime-local" id="date-time" name="last-date-time" class="medium-input" required>
 </div>
+
 
 
 
