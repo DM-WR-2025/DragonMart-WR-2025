@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -745,64 +744,70 @@
   </script>
 <script>
   function fetchCustomerDetails() {
-    const phone = document.getElementById("phone").value.trim();
-    if (!phone) {
-      alert("Please enter a phone number");
-      return;
-    }
-
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbw1d6fVcU-utpUHecfCfO0i7fzZT5oD3waZxEm172XQbXQxRr9pkI5LgjSp1lwi7Vw/exec"; // Replace with your actual deployed Apps Script Web App URL
-
-    fetch(`${scriptUrl}?phone=${encodeURIComponent(phone)}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          alert(data.error);
-        } else {
-          document.getElementById("customer-name").value = data.customerName || "";
-          $('#nationality').val(data.nationality).trigger('change');
-
-          const typeInputs = document.getElementsByName("customer-type");
-          for (let i = 0; i < typeInputs.length; i++) {
-            if (typeInputs[i].value === data.customerType) {
-              typeInputs[i].checked = true;
-            }
-          }
-
-          document.getElementById("country_code").value = data.countryCode || "";
-          document.getElementById("email").value = data.email || "";
-          document.getElementById("desk").value = data.desk || "";
-
-          showWheelchairOptions();
-          setTimeout(() => {
-            document.getElementById("wheelchair-options").value = data.wheelchair || "";
-          }, 100);
-
-          const depositInputs = document.getElementsByName("deposit-type");
-          for (let i = 0; i < depositInputs.length; i++) {
-            if (depositInputs[i].value === data.depositType) {
-              depositInputs[i].checked = true;
-              toggleSecurityDepositOptions();
-            }
-          }
-
-          document.getElementById("id-number").value = data.idNumber || "";
-          document.getElementById("cash-amount").value = data.cashAmount || "";
-          document.getElementById("currency-type").value = data.currency || "";
-
-          document.getElementById("customer-id").value = data.customerId || "";
-          document.getElementById("security-id").value = data.securityId || "";
-          document.getElementById("last-date-time").value = data.lastDate || "";
-          document.getElementById("return_location").value = data.returnLocation || "";
-          document.getElementById("issued-csa-name").value = data.issuedCsaName || "";
-          document.getElementById("closed-csa-name").value = data.closedCsaName || "";
-          document.getElementById("wheelchair-status").value = data.wheelchairStatus || "";
-        }
-      })
-      .catch(err => {
-        alert("Failed to fetch data: " + err.message);
-      });
+  const phone = document.getElementById("search-phone").value.trim();
+  if (!phone) {
+    alert("Please enter a phone number");
+    return;
   }
+
+  // ✅ Copy the searched number into the main phone input
+  document.getElementById("phone").value = phone;
+
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbw1d6fVcU-utpUHecfCfO0i7fzZT5oD3waZxEm172XQbXQxRr9pkI5LgjSp1lwi7Vw/exec";
+
+  fetch(`${scriptUrl}?phone=${encodeURIComponent(phone)}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        alert(data.error);
+      } else {
+        // Fill form fields with returned data
+        document.getElementById("customer-name").value = data.customerName || "";
+        $('#nationality').val(data.nationality).trigger('change');
+
+        const typeInputs = document.getElementsByName("customer-type");
+        for (let i = 0; i < typeInputs.length; i++) {
+          if (typeInputs[i].value === data.customerType) {
+            typeInputs[i].checked = true;
+          }
+        }
+
+        document.getElementById("country_code").value = data.countryCode || "";
+        document.getElementById("email").value = data.email || "";
+        document.getElementById("desk").value = data.desk || "";
+
+        showWheelchairOptions();
+        setTimeout(() => {
+          document.getElementById("wheelchair-options").value = data.wheelchair || "";
+        }, 100);
+
+        const depositInputs = document.getElementsByName("deposit-type");
+        for (let i = 0; i < depositInputs.length; i++) {
+          if (depositInputs[i].value === data.depositType) {
+            depositInputs[i].checked = true;
+            toggleSecurityDepositOptions();
+          }
+        }
+
+        document.getElementById("id-number").value = data.idNumber || "";
+        document.getElementById("cash-amount").value = data.cashAmount || "";
+        document.getElementById("currency-type").value = data.currency || "";
+
+        // ✅ Hidden fields
+        document.getElementById("customer-id").value = data.customerId || "";
+        document.getElementById("security-id").value = data.securityId || "";
+        document.getElementById("last-date-time").value = data.lastDate || "";
+        document.getElementById("return_location").value = data.returnLocation || "";
+        document.getElementById("issued-csa-name").value = data.issuedCsaName || "";
+        document.getElementById("closed-csa-name").value = data.closedCsaName || "";
+        document.getElementById("wheelchair-status").value = data.wheelchairStatus || "";
+      }
+    })
+    .catch(err => {
+      alert("Failed to fetch data: " + err.message);
+    });
+}
+
 </script>
 
 
@@ -1326,21 +1331,25 @@
         <option value="Alnoor">Alnoor</option>
     </select>
 </div>
+<form>
+  <!-- Existing Customer Only -->
+  <div class="form-group">
+    <label>Existing customer</label><br />
+    <div id="existing-section">
+      <label for="search-phone">Search Phone Number:</label>
+      <input type="tel" id="search-phone" name="search-phone" class="medium-input"/>
+      <button type="button" onclick="fetchCustomerDetails()">Search</button>
+    </div>
+  </div>
 
-<!-- Phone Search Field and Button (For Existing Customer Lookup ONLY) -->
-<div class="form-group">
-  <label for="search-phone">Search Phone Number:</label>
-  <input type="tel" id="search-phone" name="search-phone" class="medium-input" />
-  <button type="button" onclick="fetchCustomerDetails()">Search</button>
-</div>
+  <!-- Hidden Fields for Retrieved Data -->
+  <input type="hidden" id="return_location" name="return_location" />
+  <input type="hidden" id="issued-csa-name" name="issued-csa-name" />
+  <input type="hidden" id="closed-csa-name" name="closed-csa-name" />
+  <input type="hidden" id="wheelchair-status" name="wheelchair-status" />
+  <input type="hidden" id="customer-id" name="customer-id" />
+  <input type="hidden" id="security-id" name="security-id" />
+  <input type="hidden" id="last-date-time" name="last-date-time" />
 
-<!-- Hidden Fields for Data from Script -->
-<input type="hidden" id="return_location" name="return_location" />
-<input type="hidden" id="issued-csa-name" name="issued-csa-name" />
-<input type="hidden" id="closed-csa-name" name="closed-csa-name" />
-<input type="hidden" id="wheelchair-status" name="wheelchair-status" />
-<input type="hidden" id="customer-id" name="customer-id" />
-<input type="hidden" id="security-id" name="security-id" />
-<input type="hidden" id="last-date-time" name="last-date-time" />
-
-<button type="submit">Submit</button>
+  <button type="submit">Submit</button>
+</form>
